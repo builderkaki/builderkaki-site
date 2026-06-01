@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import SubmitModal from '../components/SubmitModal.jsx'
 
 const categories = [
   { id: 'all', label: 'All Topics', count: 142 },
@@ -72,6 +73,7 @@ const threads = [
 export default function DiscussionsPage() {
   const [activeCategory, setActiveCategory] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
+  const [showPostDiscussion, setShowPostDiscussion] = useState(false)
 
   const filtered = threads.filter(t => {
     const matchCat = activeCategory === 'all' || t.category === activeCategory
@@ -148,9 +150,9 @@ export default function DiscussionsPage() {
                   className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 bg-white text-sm focus:outline-none focus:border-brand-orange"
                 />
               </div>
-              <Link to="/#join" className="bg-brand-orange hover:bg-brand-orange-hover text-white font-semibold px-5 py-3 rounded-xl text-sm transition-colors whitespace-nowrap">
+              <button onClick={() => setShowPostDiscussion(true)} className="bg-brand-orange hover:bg-brand-orange-hover text-white font-semibold px-5 py-3 rounded-xl text-sm transition-colors whitespace-nowrap">
                 + Post Question
-              </Link>
+              </button>
             </div>
 
             {/* Thread list */}
@@ -215,6 +217,7 @@ export default function DiscussionsPage() {
           </div>
         </div>
       </div>
+      {showPostDiscussion && <SubmitModal type="discussion" onClose={() => setShowPostDiscussion(false)} />}
     </div>
   )
 }

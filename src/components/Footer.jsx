@@ -17,7 +17,7 @@ const footerLinks = {
     { label: 'About Us', href: '/#join' },
     { label: 'Advertise With Us', href: '/advertise' },
     { label: 'Partner With Us', href: 'mailto:partners@builderkaki.sg' },
-    { label: 'Contact Us', href: 'mailto:hello@builderkaki.sg' },
+    { label: 'Contact Us', href: '/contact' },
     { label: 'Privacy Policy', href: '/#join' },
   ],
 }

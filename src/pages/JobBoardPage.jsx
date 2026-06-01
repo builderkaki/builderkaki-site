@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import SubmitModal from '../components/SubmitModal.jsx'
 
 const jobTypes = ['All', 'Full-time', 'Contract', 'Freelance', 'Part-time']
 const jobCategories = ['All Roles', 'Site Management', 'Engineering', 'Architecture', 'Consulting', 'Supervision', 'Skilled Trade', 'Admin']
@@ -67,6 +68,7 @@ export default function JobBoardPage() {
   const [activeType, setActiveType] = useState('All')
   const [activeCategory, setActiveCategory] = useState('All Roles')
   const [search, setSearch] = useState('')
+  const [showPostJob, setShowPostJob] = useState(false)
 
   const filtered = jobs.filter(j => {
     const matchType = activeType === 'All' || j.type === activeType
@@ -109,9 +111,9 @@ export default function JobBoardPage() {
                 className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-orange"
               />
             </div>
-            <Link to="/#join" className="bg-brand-orange hover:bg-brand-orange-hover text-white font-bold px-6 py-3 rounded-xl text-sm transition-colors whitespace-nowrap text-center">
+            <button onClick={() => setShowPostJob(true)} className="bg-brand-orange hover:bg-brand-orange-hover text-white font-bold px-6 py-3 rounded-xl text-sm transition-colors whitespace-nowrap">
               + Post a Job (Free)
-            </Link>
+            </button>
           </div>
           {/* Type filter */}
           <div className="flex flex-wrap gap-2">
@@ -200,11 +202,12 @@ export default function JobBoardPage() {
         <div className="mt-10 bg-hero-gradient rounded-2xl p-8 text-center text-white">
           <h3 className="text-2xl font-extrabold mb-2">Hiring façade professionals?</h3>
           <p className="text-white/70 mb-5">Post your job to 2,800+ verified façade industry professionals. First 3 posts free.</p>
-          <Link to="/#join" className="inline-block bg-brand-orange hover:bg-brand-orange-hover text-white font-bold px-8 py-3 rounded-xl transition-colors">
+          <button onClick={() => setShowPostJob(true)} className="inline-block bg-brand-orange hover:bg-brand-orange-hover text-white font-bold px-8 py-3 rounded-xl transition-colors">
             Post a Job Free →
-          </Link>
+          </button>
         </div>
       </div>
+      {showPostJob && <SubmitModal type="job" onClose={() => setShowPostJob(false)} />}
     </div>
   )
 }

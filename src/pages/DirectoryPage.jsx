@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import SubmitModal from '../components/SubmitModal.jsx'
 
 const types = ['All', 'Contractor', 'Supplier', 'Consultant', 'Engineer', 'Manufacturer']
 
@@ -87,6 +88,7 @@ const scoreColor = (score) => {
 export default function DirectoryPage() {
   const [activeType, setActiveType] = useState('All')
   const [search, setSearch] = useState('')
+  const [showListCompany, setShowListCompany] = useState(false)
 
   const filtered = companies.filter(c => {
     const matchType = activeType === 'All' || c.type === activeType
@@ -124,9 +126,9 @@ export default function DirectoryPage() {
                 onChange={e => setSearch(e.target.value)}
                 className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-orange" />
             </div>
-            <Link to="/#join" className="bg-brand-orange hover:bg-brand-orange-hover text-white font-bold px-6 py-3 rounded-xl text-sm transition-colors whitespace-nowrap text-center">
+            <button onClick={() => setShowListCompany(true)} className="bg-brand-orange hover:bg-brand-orange-hover text-white font-bold px-6 py-3 rounded-xl text-sm transition-colors whitespace-nowrap">
               + List Your Company
-            </Link>
+            </button>
           </div>
           <div className="flex flex-wrap gap-2">
             {types.map(t => (
@@ -196,11 +198,12 @@ export default function DirectoryPage() {
         <div className="mt-10 bg-hero-gradient rounded-2xl p-8 text-center text-white">
           <h3 className="text-2xl font-extrabold mb-2">Is your company listed?</h3>
           <p className="text-white/70 mb-5">Free basic listing for all BCA-registered companies. Premium listing from S$50/month.</p>
-          <Link to="/#join" className="inline-block bg-brand-orange hover:bg-brand-orange-hover text-white font-bold px-8 py-3 rounded-xl transition-colors">
+          <button onClick={() => setShowListCompany(true)} className="inline-block bg-brand-orange hover:bg-brand-orange-hover text-white font-bold px-8 py-3 rounded-xl transition-colors">
             List Your Company Free →
-          </Link>
+          </button>
         </div>
       </div>
+      {showListCompany && <SubmitModal type="company" onClose={() => setShowListCompany(false)} />}
     </div>
   )
 }
