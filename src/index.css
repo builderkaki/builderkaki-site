@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #F8FAFF;
+    color: #0B1D3A;
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Facade glass panel animation */
+@keyframes panelShimmer {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 0.8; transform: scaleY(1.02); }
+}
+
+@keyframes lightSweep {
+  0% { transform: translateX(-100%) skewX(-15deg); opacity: 0; }
+  30% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { transform: translateX(300%) skewX(-15deg); opacity: 0; }
+}
+
+@keyframes floatUp {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(232, 99, 10, 0.3); }
+  50% { box-shadow: 0 0 0 12px rgba(232, 99, 10, 0); }
+}
+
+.animate-fade-up {
+  animation: fadeInUp 0.7s ease forwards;
+}
+
+.animate-float {
+  animation: floatUp 4s ease-in-out infinite;
+}
+
+.btn-pulse {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #E8630A 0%, #F5A623 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-blue {
+  background: linear-gradient(135deg, #1565C0 0%, #0D47A1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-divider {
+  width: 64px;
+  height: 4px;
+  background: linear-gradient(90deg, #E8630A, #F5A623);
+  border-radius: 2px;
+}
+
+/* Facade grid animation */
+.facade-panel {
+  transition: all 0.3s ease;
+}
+
+.panel-a { animation: panelShimmer 4s ease-in-out infinite; animation-delay: 0s; }
+.panel-b { animation: panelShimmer 4s ease-in-out infinite; animation-delay: 0.4s; }
+.panel-c { animation: panelShimmer 4s ease-in-out infinite; animation-delay: 0.8s; }
+.panel-d { animation: panelShimmer 4s ease-in-out infinite; animation-delay: 1.2s; }
+.panel-e { animation: panelShimmer 4s ease-in-out infinite; animation-delay: 1.6s; }
+.panel-f { animation: panelShimmer 4s ease-in-out infinite; animation-delay: 2.0s; }
+.panel-g { animation: panelShimmer 4s ease-in-out infinite; animation-delay: 2.4s; }
+.panel-h { animation: panelShimmer 4s ease-in-out infinite; animation-delay: 2.8s; }
+
+.light-sweep::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 60px; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  animation: lightSweep 5s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0; height: 2px;
+  background: #E8630A;
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after { width: 100%; }
