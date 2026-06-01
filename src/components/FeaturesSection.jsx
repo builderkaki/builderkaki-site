@@ -8,6 +8,7 @@ const features = [
     title: 'Job Board',
     desc: 'Post and find façade contracts, subcontracts, and professional roles. Verified companies only.',
     badge: 'Free to post',
+    href: '#join',
   },
   {
     icon: (
@@ -18,6 +19,7 @@ const features = [
     title: 'Technical Discussions',
     desc: 'Industry-specific forums for façade systems, structural glazing, curtain walls, cladding and more.',
     badge: 'Members only',
+    href: '#community',
   },
   {
     icon: (
@@ -28,6 +30,7 @@ const features = [
     title: 'Contract Hub',
     desc: 'Plain-English guides, template clauses, SOP Act explained, and live contract Q&A with experienced practitioners.',
     badge: 'Free guides',
+    href: '#join',
   },
   {
     icon: (
@@ -38,6 +41,7 @@ const features = [
     title: 'Product Advertising',
     desc: 'Suppliers and consultants get prime placement in front of thousands of decision-makers across the façade supply chain.',
     badge: 'From S$400/mo',
+    href: '#advertise',
   },
   {
     icon: (
@@ -48,6 +52,7 @@ const features = [
     title: 'Micro-Learning',
     desc: 'Short video courses on contracts, safety, BCA regulations, and site management. Earn CPD points and certificates.',
     badge: 'S$150/course',
+    href: '#join',
   },
   {
     icon: (
@@ -58,6 +63,7 @@ const features = [
     title: 'Safety Scorecard',
     desc: 'Automatic safety ratings pulled from BCA incident data. Know a company\'s track record before you hire or partner.',
     badge: 'Verified data',
+    href: '#join',
   },
 ]
 
@@ -80,7 +86,7 @@ export default function FeaturesSection() {
         {/* Features grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map(f => (
-            <div key={f.title} className="bg-white rounded-2xl p-6 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 group">
+            <a key={f.title} href={f.href} className="bg-white rounded-2xl p-6 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 group block">
               <div className="flex items-start justify-between mb-4">
                 <div className="w-12 h-12 rounded-xl bg-brand-blue-light text-brand-blue flex items-center justify-center group-hover:bg-brand-orange group-hover:text-white transition-colors duration-300">
                   {f.icon}
@@ -90,8 +96,9 @@ export default function FeaturesSection() {
                 </span>
               </div>
               <h3 className="font-bold text-brand-navy text-lg mb-2">{f.title}</h3>
-              <p className="text-brand-navy/60 text-sm leading-relaxed">{f.desc}</p>
-            </div>
+              <p className="text-brand-navy/60 text-sm leading-relaxed mb-3">{f.desc}</p>
+              <span className="text-brand-orange text-sm font-semibold group-hover:underline">Learn more →</span>
+            </a>
           ))}
         </div>
 

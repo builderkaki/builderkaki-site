@@ -75,9 +75,9 @@ export default function NewLaunches() {
               <p className="text-sm text-brand-navy/65 leading-relaxed mb-4">{l.desc}</p>
               <div className="flex items-center justify-between">
                 <span className="text-xs text-brand-navy/40 font-medium">{l.date}</span>
-                <button className="text-brand-blue text-sm font-semibold hover:text-brand-orange transition-colors">
+                <a href="#join" className="text-brand-blue text-sm font-semibold hover:text-brand-orange transition-colors">
                   Read more →
-                </button>
+                </a>
               </div>
             </div>
           ))}
