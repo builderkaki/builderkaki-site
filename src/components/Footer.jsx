@@ -1,26 +1,28 @@
 const footerLinks = {
   Platform: [
-    { label: 'Job Board', href: '#features' },
-    { label: 'Technical Hub', href: '#community' },
-    { label: 'Contract Guides', href: '#features' },
-    { label: 'New Launches', href: '#launches' },
-    { label: 'Micro-Learning', href: '#features' },
+    { label: 'Job Board', href: '/jobs' },
+    { label: 'Discussions', href: '/discussions' },
+    { label: 'Courses', href: '/courses' },
+    { label: 'New Launches', href: '/launches' },
+    { label: 'Directory', href: '/directory' },
   ],
   Community: [
-    { label: 'Contractors', href: '#audience' },
-    { label: 'Engineers', href: '#audience' },
-    { label: 'Architects', href: '#audience' },
-    { label: 'Consultants', href: '#audience' },
-    { label: 'Suppliers', href: '#audience' },
+    { label: 'Contractors', href: '/directory' },
+    { label: 'Engineers', href: '/directory' },
+    { label: 'Architects', href: '/directory' },
+    { label: 'Consultants', href: '/directory' },
+    { label: 'Suppliers', href: '/directory' },
   ],
   Company: [
-    { label: 'About Us', href: '#join' },
-    { label: 'Advertise With Us', href: '#advertise' },
+    { label: 'About Us', href: '/#join' },
+    { label: 'Advertise With Us', href: '/advertise' },
     { label: 'Partner With Us', href: 'mailto:partners@builderkaki.sg' },
     { label: 'Contact Us', href: 'mailto:hello@builderkaki.sg' },
-    { label: 'Privacy Policy', href: '#join' },
+    { label: 'Privacy Policy', href: '/#join' },
   ],
 }
+
+import { Link } from 'react-router-dom'
 
 export default function Footer() {
   return (
@@ -75,13 +77,11 @@ export default function Footer() {
               <ul className="flex flex-col gap-2.5">
                 {links.map(link => (
                   <li key={link.label}>
-                    <a
-                      href={link.href}
-                      className="text-white/50 text-sm hover:text-white transition-colors"
-                      {...(link.href.startsWith('mailto') ? {} : {})}
-                    >
-                      {link.label}
-                    </a>
+                    {link.href.startsWith('mailto') ? (
+                      <a href={link.href} className="text-white/50 text-sm hover:text-white transition-colors">{link.label}</a>
+                    ) : (
+                      <Link to={link.href} className="text-white/50 text-sm hover:text-white transition-colors">{link.label}</Link>
+                    )}
                   </li>
                 ))}
               </ul>
